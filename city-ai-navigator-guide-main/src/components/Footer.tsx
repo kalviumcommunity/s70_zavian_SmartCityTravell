@@ -92,9 +92,10 @@ const Footer = () => {
             <h3 className="font-display font-semibold mb-4 text-lg">Contact</h3>
             <ul className="space-y-2 text-cityGray">
               <li>hello@smarttravel.app</li>
-              <li>+1 (555) 123-4567</li>
+              <li>+91 1234567890</li>
               <li>123 Travel Street</li>
-              <li>San Francisco, CA 94107</li>
+              <li>Bangalore</li>
+              <li>India</li>
             </ul>
           </div>
         </div>
