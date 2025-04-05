@@ -65,8 +65,8 @@ Edit
 npm install
 5. Run the App
 bash
-Copy
-Edit
+cd city-ai-navigator-guide-main 
+npm install 
 npm run dev
 Visit: http://localhost:8080/
 
