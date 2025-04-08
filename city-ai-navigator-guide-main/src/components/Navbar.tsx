@@ -1,12 +1,12 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, Menu, X, Map, Compass, Home, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,7 +15,7 @@ const Navbar = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -57,9 +57,11 @@ const Navbar = () => {
               />
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-cityGray" />
             </form>
-            <Button variant="outline" size="sm" className="rounded-full">
-              <User className="h-4 w-4 mr-1" />
-              <span>Sign In</span>
+            <Button variant="outline" size="sm" className="rounded-full" asChild>
+              <Link to="/sign-in">
+                <User className="h-4 w-4 mr-1" />
+                <span>Sign In</span>
+              </Link>
             </Button>
           </div>
 
@@ -118,9 +120,11 @@ const Navbar = () => {
               >
                 About
               </Link>
-              <Button className="w-full mt-3">
-                <User className="h-4 w-4 mr-2" />
-                <span>Sign In</span>
+              <Button className="w-full mt-3" asChild>
+                <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>
+                  <User className="h-4 w-4 mr-2" />
+                  <span>Sign In</span>
+                </Link>
               </Button>
             </div>
           </div>
