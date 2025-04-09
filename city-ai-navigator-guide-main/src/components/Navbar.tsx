@@ -57,12 +57,14 @@ const Navbar = () => {
               />
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-cityGray" />
             </form>
-            <Button variant="outline" size="sm" className="rounded-full" asChild>
-              <Link to="/sign-in">
-                <User className="h-4 w-4 mr-1" />
-                <span>Sign In</span>
-              </Link>
-            </Button>
+            <div className="flex space-x-2">
+              <Button variant="outline" size="sm" className="rounded-full" asChild>
+                <Link to="/sign-in">Sign In</Link>
+              </Button>
+              <Button size="sm" className="rounded-full" asChild>
+                <Link to="/sign-up">Sign Up</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -120,12 +122,14 @@ const Navbar = () => {
               >
                 About
               </Link>
-              <Button className="w-full mt-3" asChild>
-                <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>
-                  <User className="h-4 w-4 mr-2" />
-                  <span>Sign In</span>
-                </Link>
-              </Button>
+              <div className="flex space-x-2 mt-3">
+                <Button className="w-1/2" variant="outline" asChild>
+                  <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
+                </Button>
+                <Button className="w-1/2" asChild>
+                  <Link to="/sign-up" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
+                </Button>
+              </div>
             </div>
           </div>
         )}
