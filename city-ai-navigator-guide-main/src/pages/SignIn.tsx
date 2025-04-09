@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, User, Facebook, Github, X, ArrowLeft } from 'lucide-react';
@@ -11,36 +12,50 @@ import { toast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-interface SignInFormValues {
+interface SignUpFormValues {
+  name: string;
   email: string;
   password: string;
-  rememberMe: boolean;
+  confirmPassword: string;
+  agreeTerms: boolean;
 }
 
-const SignIn = () => {
-  const form = useForm<SignInFormValues>({
+const SignUp = () => {
+  const form = useForm<SignUpFormValues>({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
-      rememberMe: false,
+      confirmPassword: '',
+      agreeTerms: false,
     },
   });
 
-  const onSubmit = (data: SignInFormValues) => {
-    console.log('Sign in data:', data);
-    // For demonstration purposes, just show a success toast
+  const onSubmit = (data: SignUpFormValues) => {
+    console.log('Sign up data:', data);
+    if (data.password !== data.confirmPassword) {
+      toast({
+        title: "Passwords don't match",
+        description: "Please make sure your passwords match.",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+    
+    // For demonstration purposes, show a success toast
     toast({
-      title: "Sign in attempted",
+      title: "Account created!",
       description: "This is a demo. Authentication is not yet implemented.",
       duration: 3000,
     });
   };
 
-  const handleSocialSignIn = (provider: string) => {
-    console.log(`Sign in with ${provider}`);
+  const handleSocialSignUp = (provider: string) => {
+    console.log(`Sign up with ${provider}`);
     toast({
-      title: `${provider} Sign In`,
-      description: `Sign in with ${provider} is not yet implemented.`,
+      title: `${provider} Sign Up`,
+      description: `Sign up with ${provider} is not yet implemented.`,
       duration: 3000,
     });
   };
@@ -56,13 +71,34 @@ const SignIn = () => {
               <ArrowLeft className="h-5 w-5 text-cityNavy inline mr-2" />
               <span className="text-cityNavy">Back to Home</span>
             </Link>
-            <h2 className="mt-6 text-3xl font-display font-bold text-cityNavy">Welcome Back</h2>
-            <p className="mt-2 text-sm text-cityGray">Sign in to your account to continue your journey</p>
+            <h2 className="mt-6 text-3xl font-display font-bold text-cityNavy">Create Account</h2>
+            <p className="mt-2 text-sm text-cityGray">Sign up to start exploring amazing destinations</p>
           </div>
           
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 space-y-6">
               <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name</FormLabel>
+                      <div className="relative">
+                        <User className="absolute left-3 top-2.5 h-5 w-5 text-cityGray" />
+                        <FormControl>
+                          <Input 
+                            placeholder="John Smith" 
+                            className="pl-10" 
+                            required
+                            {...field} 
+                          />
+                        </FormControl>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+                
                 <FormField
                   control={form.control}
                   name="email"
@@ -107,41 +143,56 @@ const SignIn = () => {
                   )}
                 />
                 
-                <div className="flex items-center justify-between">
-                  <FormField
-                    control={form.control}
-                    name="rememberMe"
-                    render={({ field }) => (
-                      <div className="flex items-center">
-                        <Checkbox 
-                          id="rememberMe"
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                        <label htmlFor="rememberMe" className="ml-2 block text-sm text-cityGray">
-                          Remember me
-                        </label>
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <div className="relative">
+                        <Lock className="absolute left-3 top-2.5 h-5 w-5 text-cityGray" />
+                        <FormControl>
+                          <Input 
+                            placeholder="••••••••" 
+                            type="password" 
+                            className="pl-10" 
+                            required
+                            {...field} 
+                          />
+                        </FormControl>
                       </div>
-                    )}
-                  />
-                  
-                  <div className="text-sm">
-                    <Link to="/forgot-password" className="font-medium text-cityBlue hover:text-cityNavy">
-                      Forgot your password?
-                    </Link>
-                  </div>
-                </div>
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="agreeTerms"
+                  render={({ field }) => (
+                    <div className="flex items-center">
+                      <Checkbox 
+                        id="agreeTerms"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        required
+                      />
+                      <label htmlFor="agreeTerms" className="ml-2 block text-sm text-cityGray">
+                        I agree to the <Link to="/terms" className="text-cityBlue hover:text-cityNavy">Terms of Service</Link> and <Link to="/privacy" className="text-cityBlue hover:text-cityNavy">Privacy Policy</Link>
+                      </label>
+                    </div>
+                  )}
+                />
               </div>
               
               <Button type="submit" className="w-full">
-                Sign In
+                Create Account
               </Button>
               
               <div className="mt-4 text-center">
                 <p className="text-sm text-cityGray">
-                  Don't have an account?{' '}
-                  <Link to="/sign-up" className="font-medium text-cityBlue hover:text-cityNavy">
-                    Sign up
+                  Already have an account?{' '}
+                  <Link to="/sign-in" className="font-medium text-cityBlue hover:text-cityNavy">
+                    Sign in
                   </Link>
                 </p>
               </div>
@@ -152,15 +203,15 @@ const SignIn = () => {
                     <div className="w-full border-t border-gray-200"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-cityGray">Or continue with</span>
+                    <span className="px-2 bg-white text-cityGray">Or sign up with</span>
                   </div>
                 </div>
                 
-                <div className="mt-6 grid grid-cols-3 gap-3">
+                <div className="mt-6 grid grid-cols-2 gap-3">
                   <Button 
                     type="button" 
                     variant="outline" 
-                    onClick={() => handleSocialSignIn('Facebook')}
+                    onClick={() => handleSocialSignUp('Facebook')}
                     className="w-full"
                   >
                     <Facebook className="h-5 w-5" />
@@ -169,16 +220,7 @@ const SignIn = () => {
                   <Button 
                     type="button" 
                     variant="outline" 
-                    onClick={() => handleSocialSignIn('Twitter')}
-                    className="w-full"
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
-                  
-                  <Button 
-                    type="button" 
-                    variant="outline" 
-                    onClick={() => handleSocialSignIn('GitHub')}
+                    onClick={() => handleSocialSignUp('GitHub')}
                     className="w-full"
                   >
                     <Github className="h-5 w-5" />
@@ -195,4 +237,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
