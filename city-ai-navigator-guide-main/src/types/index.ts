@@ -1,4 +1,3 @@
-
 export interface City {
   id: string;
   name: string;
@@ -9,6 +8,10 @@ export interface City {
   attractions: Attraction[];
   categories: string[];
   weather?: Weather;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
 }
 
 export interface Attraction {
@@ -21,6 +24,10 @@ export interface Attraction {
   price?: string;
   duration?: string;
   location?: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
 }
 
 export interface Weather {
@@ -46,4 +53,14 @@ export interface Itinerary {
   cityId: string;
   days: ItineraryDay[];
   totalCost?: string;
+}
+
+export interface CustomAttraction {
+  name: string;
+  description: string;
+  image: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
 }
