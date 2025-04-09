@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Lock, User, Google, Facebook, Github, X, ArrowLeft } from 'lucide-react';
+import { Mail, Lock, User, Facebook, Github, X, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -207,7 +207,7 @@ const SignUp = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 grid grid-cols-3 gap-3">
+                <div className="mt-6 grid grid-cols-2 gap-3">
                   <Button 
                     type="button" 
                     variant="outline" 
@@ -215,15 +215,6 @@ const SignUp = () => {
                     className="w-full"
                   >
                     <Facebook className="h-5 w-5" />
-                  </Button>
-                  
-                  <Button 
-                    type="button" 
-                    variant="outline" 
-                    onClick={() => handleSocialSignUp('Google')}
-                    className="w-full"
-                  >
-                    <Google className="h-5 w-5" />
                   </Button>
                   
                   <Button 
