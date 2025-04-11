@@ -1,3 +1,4 @@
+
 import { City, Attraction, Itinerary, UserPreference } from "../types";
 
 // Mock data for cities
@@ -761,8 +762,252 @@ const cities: City[] = [
       lat: 31.6340,
       lng: 74.8723
     }
+  },
+  {
+    id: "rishikesh",
+    name: "Rishikesh",
+    country: "India",
+    description: "Known as the 'Yoga Capital of the World', Rishikesh is a spiritual hub nestled in the foothills of the Himalayas along the sacred Ganges River, offering adventure sports, meditation centers, and stunning natural beauty.",
+    imageUrl: "https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+    rating: 4.8,
+    categories: ["Spiritual", "Adventure", "Yoga", "Nature"],
+    attractions: [
+      {
+        id: "laxman-jhula",
+        name: "Laxman Jhula",
+        description: "Iconic iron suspension bridge across the River Ganges, named after Lord Rama's brother Laxman who is said to have crossed the river on a jute rope.",
+        imageUrl: "https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Landmark",
+        rating: 4.6,
+        price: "Free",
+        duration: "1 hour",
+        location: "Tehri Garhwal",
+        coordinates: {
+          lat: 30.1220,
+          lng: 78.3299
+        }
+      },
+      {
+        id: "river-rafting",
+        name: "White Water Rafting",
+        description: "Experience thrilling rapids on the Ganges River with grades ranging from 3-5, suitable for beginners and experienced rafters.",
+        imageUrl: "https://images.unsplash.com/photo-1491555103944-7c647fd857e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Adventure",
+        rating: 4.9,
+        price: "₹1500-2500",
+        duration: "2-4 hours",
+        location: "Various starting points",
+        coordinates: {
+          lat: 30.1087,
+          lng: 78.3260
+        }
+      },
+      {
+        id: "triveni-ghat",
+        name: "Triveni Ghat",
+        description: "Sacred bathing spot where three rivers meet. Famous for its evening Ganga Aarti (prayer ceremony) and peaceful atmosphere.",
+        imageUrl: "https://images.unsplash.com/photo-1626168139126-3b89e181e938?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Spiritual",
+        rating: 4.7,
+        price: "Free",
+        duration: "1-2 hours",
+        location: "Rishikesh",
+        coordinates: {
+          lat: 30.1070,
+          lng: 78.3063
+        }
+      },
+      {
+        id: "beatles-ashram",
+        name: "Beatles Ashram",
+        description: "Abandoned meditation center where The Beatles stayed in 1968, now covered in artistic graffiti and offering peaceful meditation spaces.",
+        imageUrl: "https://images.unsplash.com/photo-1604873366942-0c7972c40884?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Culture",
+        rating: 4.5,
+        price: "₹600",
+        duration: "2-3 hours",
+        location: "Swarg Ashram",
+        coordinates: {
+          lat: 30.1033,
+          lng: 78.3150
+        }
+      }
+    ],
+    weather: {
+      temperature: 25,
+      condition: "Sunny",
+      icon: "sun"
+    },
+    coordinates: {
+      lat: 30.1087,
+      lng: 78.2932
+    }
+  },
+  {
+    id: "darjeeling",
+    name: "Darjeeling",
+    country: "India",
+    description: "Nestled in the Himalayan foothills, this hill station is famous for its tea plantations, stunning views of Mount Kanchenjunga, colonial architecture, and the historic Darjeeling Himalayan Railway.",
+    imageUrl: "https://images.unsplash.com/photo-1544662751-64955ef5b8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    rating: 4.7,
+    categories: ["Nature", "Culture", "Tea", "Heritage"],
+    attractions: [
+      {
+        id: "tiger-hill",
+        name: "Tiger Hill",
+        description: "Famous viewpoint offering breathtaking sunrise views over Mount Kanchenjunga and the eastern Himalayas.",
+        imageUrl: "https://images.unsplash.com/photo-1581326525839-e06a6c6c885a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Nature",
+        rating: 4.9,
+        price: "₹50",
+        duration: "2-3 hours",
+        location: "11 km from Darjeeling",
+        coordinates: {
+          lat: 27.0472,
+          lng: 88.2631
+        }
+      },
+      {
+        id: "tea-gardens",
+        name: "Happy Valley Tea Estate",
+        description: "One of the oldest and most famous tea gardens offering tours of the plantation and tea processing facilities with tea tasting.",
+        imageUrl: "https://images.unsplash.com/photo-1523920290222-241d2f3c80c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Tea",
+        rating: 4.7,
+        price: "₹100",
+        duration: "1-2 hours",
+        location: "Lebong",
+        coordinates: {
+          lat: 27.0542,
+          lng: 88.2615
+        }
+      },
+      {
+        id: "toy-train",
+        name: "Darjeeling Himalayan Railway",
+        description: "UNESCO World Heritage Site, this narrow-gauge railway (known as the 'Toy Train') offers a scenic journey through the mountains.",
+        imageUrl: "https://images.unsplash.com/photo-1602517127208-9e4fc309e1a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Heritage",
+        rating: 4.8,
+        price: "₹1300",
+        duration: "2 hours (joy ride)",
+        location: "Darjeeling Railway Station",
+        coordinates: {
+          lat: 27.0431,
+          lng: 88.2636
+        }
+      },
+      {
+        id: "himalayan-zoo",
+        name: "Padmaja Naidu Himalayan Zoological Park",
+        description: "Specialized zoo focused on breeding programs for endangered Himalayan species including the red panda and snow leopard.",
+        imageUrl: "https://images.unsplash.com/photo-1588127333419-b9d7de223dcf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Nature",
+        rating: 4.6,
+        price: "₹100",
+        duration: "2-3 hours",
+        location: "Jawahar Parbat",
+        coordinates: {
+          lat: 27.0499,
+          lng: 88.2537
+        }
+      }
+    ],
+    weather: {
+      temperature: 15,
+      condition: "Foggy",
+      icon: "cloud"
+    },
+    coordinates: {
+      lat: 27.0360,
+      lng: 88.2627
+    }
+  },
+  {
+    id: "kochi",
+    name: "Kochi",
+    country: "India",
+    description: "This historic port city in Kerala showcases a unique blend of Dutch, Portuguese, and British colonial influences alongside traditional South Indian culture, famous for its Chinese fishing nets, ancient synagogues, and vibrant art scene.",
+    imageUrl: "https://images.unsplash.com/photo-1590123717647-43cb1fe68db1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    rating: 4.6,
+    categories: ["Culture", "History", "Coastal", "Food"],
+    attractions: [
+      {
+        id: "chinese-fishing-nets",
+        name: "Chinese Fishing Nets",
+        description: "Iconic fishing structures introduced by Chinese explorers in the 14th century, still used by local fishermen and best viewed at sunset.",
+        imageUrl: "https://images.unsplash.com/photo-1593693858797-75a8a57c3911?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Culture",
+        rating: 4.7,
+        price: "Free",
+        duration: "1 hour",
+        location: "Fort Kochi",
+        coordinates: {
+          lat: 9.9673,
+          lng: 76.2432
+        }
+      },
+      {
+        id: "jew-town",
+        name: "Jew Town & Paradesi Synagogue",
+        description: "Historic neighborhood with the oldest active synagogue in the Commonwealth, surrounded by antique shops and spice markets.",
+        imageUrl: "https://images.unsplash.com/photo-1584805644116-e13bfc95979e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Heritage",
+        rating: 4.6,
+        price: "₹10 (Synagogue entry)",
+        duration: "2 hours",
+        location: "Mattancherry",
+        coordinates: {
+          lat: 9.9569,
+          lng: 76.2594
+        }
+      },
+      {
+        id: "kathakali",
+        name: "Kerala Kathakali Centre",
+        description: "Cultural center showcasing Kerala's traditional dance-drama with elaborate costumes and makeup.",
+        imageUrl: "https://images.unsplash.com/photo-1582801363095-f1ff244a6b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Culture",
+        rating: 4.8,
+        price: "₹350",
+        duration: "2 hours",
+        location: "Fort Kochi",
+        coordinates: {
+          lat: 9.9639,
+          lng: 76.2426
+        }
+      },
+      {
+        id: "kerala-cuisine",
+        name: "Kerala Seafood Experience",
+        description: "Sample authentic Kerala seafood dishes like Karimeen Pollichathu (pearl spot fish), prawn curry, and fish molee with appam.",
+        imageUrl: "https://images.unsplash.com/photo-1613682988402-12e25b5d2218?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+        category: "Food",
+        rating: 4.9,
+        price: "₹1000-1500",
+        duration: "2 hours",
+        location: "Various restaurants",
+        coordinates: {
+          lat: 9.9651,
+          lng: 76.2535
+        }
+      }
+    ],
+    weather: {
+      temperature: 30,
+      condition: "Partly Cloudy",
+      icon: "cloud-sun"
+    },
+    coordinates: {
+      lat: 9.9312,
+      lng: 76.2673
+    }
   }
 ];
+
+// Now initialize the cities without using additionalCities
+// Remove this line that was causing the error:
+// cities.push(...additionalCities);
 
 export const getCities = (): Promise<City[]> => {
   return new Promise((resolve) => {
