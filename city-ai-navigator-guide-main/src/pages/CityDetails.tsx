@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Sun, CloudRain, Cloud, CloudSun, Star, MapPin, Filter, Grid2X2, Rows } from 'lucide-react';
+import { Sun, CloudRain, Cloud, CloudSun, Star, MapPin, Filter, Grid2X2, Rows, Map } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Navbar from '../components/Navbar';
@@ -9,6 +8,7 @@ import Footer from '../components/Footer';
 import AttractionCard from '../components/AttractionCard';
 import ItineraryPlanner from '../components/ItineraryPlanner';
 import AiCityInsight from '../components/AiCityInsight';
+import OpenStreetMap from '../components/OpenStreetMap';
 import { City } from '../types';
 import { getCity } from '../services/cityService';
 
@@ -18,6 +18,7 @@ const CityDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<string>('attractions');
 
   useEffect(() => {
     const loadCity = async () => {
@@ -113,7 +114,6 @@ const CityDetails = () => {
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Banner */}
       <div className="relative h-80 md:h-96">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${city.imageUrl})` }}></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30"></div>
@@ -131,7 +131,6 @@ const CityDetails = () => {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* City Description and Weather */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
             <p className="text-lg text-cityGray mb-6">{city.description}</p>
@@ -163,14 +162,14 @@ const CityDetails = () => {
           </div>
         </div>
 
-        <Tabs defaultValue="attractions" className="mb-12">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-12">
           <TabsList className="mb-6">
             <TabsTrigger value="attractions">Attractions</TabsTrigger>
+            <TabsTrigger value="map">Map</TabsTrigger>
             <TabsTrigger value="itinerary">Plan Itinerary</TabsTrigger>
           </TabsList>
           
           <TabsContent value="attractions">
-            {/* Attractions Filters */}
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center space-x-2">
                 <Filter className="h-5 w-5 text-cityGray" />
@@ -200,7 +199,6 @@ const CityDetails = () => {
                 </div>
               </div>
               
-              {/* View Switcher */}
               <div className="flex items-center border rounded-md">
                 <button
                   onClick={() => setViewMode('grid')}
@@ -219,7 +217,6 @@ const CityDetails = () => {
               </div>
             </div>
             
-            {/* Attractions Grid */}
             <div className={`
               ${viewMode === 'grid'
                 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
@@ -296,9 +293,35 @@ const CityDetails = () => {
             </div>
           </TabsContent>
           
+          <TabsContent value="map">
+            <div className="space-y-4">
+              <div className="flex items-center mb-4">
+                <Map className="h-5 w-5 text-cityBlue mr-2" />
+                <h3 className="font-display font-semibold text-xl">Map of {city.name}</h3>
+              </div>
+              
+              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                {city && (
+                  <OpenStreetMap 
+                    city={city}
+                    attractions={city.attractions}
+                    className="h-[500px]"
+                  />
+                )}
+              </div>
+              
+              <div className="p-4 bg-blue-50 rounded-lg">
+                <p className="text-cityGray text-sm">
+                  Explore the map to discover attractions and landmarks in {city.name}. 
+                  Click on markers to see details about specific locations.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+          
           <TabsContent value="itinerary">
             <div className="max-w-lg mx-auto">
-              <ItineraryPlanner cityId={city.id} />
+              <ItineraryPlanner cityId={city.id} cityName={city.name} />
             </div>
           </TabsContent>
         </Tabs>
