@@ -1,3 +1,4 @@
+
 export interface City {
   id: string;
   name: string;
@@ -47,18 +48,26 @@ export interface ItineraryDay {
   morningActivity?: Attraction;
   afternoonActivity?: Attraction;
   eveningActivity?: Attraction;
+  notes?: string;
+  customAttractions?: CustomAttraction[];
 }
 
 export interface Itinerary {
   cityId: string;
   days: ItineraryDay[];
   totalCost?: string;
+  title?: string;
+  startDate?: Date;
+  endDate?: Date;
+  id?: string;
 }
 
 export interface CustomAttraction {
   name: string;
   description: string;
   image: string;
+  category?: string;
+  time?: string;
   coordinates?: {
     lat: number;
     lng: number;
