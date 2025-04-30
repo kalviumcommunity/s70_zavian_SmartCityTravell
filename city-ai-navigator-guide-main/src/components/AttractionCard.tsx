@@ -1,13 +1,20 @@
 
 import React from 'react';
 import { Attraction } from '../types';
-import { Star, Clock, DollarSign, MapPin } from 'lucide-react';
+import { Star, Clock, DollarSign, MapPin, Navigation } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface AttractionCardProps {
   attraction: Attraction;
 }
 
 const AttractionCard = ({ attraction }: AttractionCardProps) => {
+  // Create a Google Maps navigation URL
+  const createGoogleMapsUrl = (lat?: number, lng?: number, name?: string): string => {
+    if (!lat || !lng) return '#';
+    return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=${encodeURIComponent(name || '')}`;
+  };
+
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       {/* Image */}
@@ -40,7 +47,7 @@ const AttractionCard = ({ attraction }: AttractionCardProps) => {
         <p className="text-cityGray text-sm line-clamp-2 mb-3">{attraction.description}</p>
         
         {/* Details */}
-        <div className="flex flex-wrap text-xs text-cityGray gap-3">
+        <div className="flex flex-wrap text-xs text-cityGray gap-3 mb-3">
           {attraction.price && (
             <div className="flex items-center">
               <DollarSign className="h-3 w-3 mr-1" />
@@ -62,6 +69,21 @@ const AttractionCard = ({ attraction }: AttractionCardProps) => {
             </div>
           )}
         </div>
+
+        {/* Navigation button */}
+        {attraction.coordinates && (
+          <a 
+            href={createGoogleMapsUrl(attraction.coordinates.lat, attraction.coordinates.lng, attraction.name)} 
+            target="_blank" 
+            rel="noreferrer noopener"
+            className="w-full"
+          >
+            <Button variant="outline" size="sm" className="w-full flex items-center justify-center gap-1">
+              <Navigation className="h-3 w-3" />
+              <span>Navigate</span>
+            </Button>
+          </a>
+        )}
       </div>
     </div>
   );
