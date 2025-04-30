@@ -1,4 +1,3 @@
-
 export interface City {
   id: string;
   name: string;
@@ -72,4 +71,22 @@ export interface CustomAttraction {
     lat: number;
     lng: number;
   };
+}
+
+// Navigation related types
+export interface NavigationOptions {
+  mode?: 'driving' | 'walking' | 'bicycling' | 'transit';
+  avoidHighways?: boolean;
+  avoidTolls?: boolean;
+  avoidFerries?: boolean;
+}
+
+// Google Maps URL parameters: https://developers.google.com/maps/documentation/urls/get-started
+export interface GoogleMapsUrlParams {
+  origin?: string;
+  destination: string;
+  travelmode?: string;
+  dir_action?: string;
+  waypoints?: string[];
+  avoid?: string[];
 }
